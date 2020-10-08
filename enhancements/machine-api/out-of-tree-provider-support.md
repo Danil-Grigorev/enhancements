@@ -169,7 +169,7 @@ Operator will manage:
 - `Deployments`, provisioned by the operator will run the pods on the `control-plane` nodes, and will tolerate `cloudprovider.kubernetes.io/uninitialized` and `node-role.kubernetes.io/master` taints.
 - The `--cloud-provider` and the `--cloud-config` arguments will be populated using existing `library-go` based implementation from the [cluster-kube-controller-manager-operator](https://github.com/openshift/cluster-kube-controller-manager-operator/blob/990ea3f2ace13be6579c00a889842c3f5d3e756a/pkg/operator/configobservation/configobservercontroller/observe_config_controller.go#L82-L85) to share a common approach with the bootstrap specific static-pod configuration.
 - Operator will own a `cluster-operator` resource, which will report the readiness of all workloads at post-install phase. The conditions reported will help other dependent components, such as [openshift-ingress](https://github.com/openshift/cluster-ingress-operator).
-- Operator will be built with a goal to achieve provider decoupling and potential switching between providers in the cluster, and will consider support to run multiple providers in a cluster simultaneously (long-term goal).
+- Operator will be built with consideration for potential future implementations of hybrid OpenShift clusters which support multiple cloud providers simultaneously (ie ensure resources created for each provider by the operator do not clash with resources for other providers)
 
 #### CVO managemnet
 
