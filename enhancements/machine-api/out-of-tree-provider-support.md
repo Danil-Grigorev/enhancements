@@ -209,6 +209,10 @@ The operator is expected to be integrated with the [cloud-credentials-operator](
 - Using `CredentialsRequest` is the default option, every supported `CCM` within the `Deployment` will request its own set of credentials.
 - A set of `CredentialsRequest` resources will be hosted under `CCCMO` repository, and created by the `CVO`, similarly to the [machine-api](https://github.com/openshift/machine-api-operator/blob/6f629682b791a6f4992b78218bfc6e41a32abbe9/install/0000_30_machine-api-operator_00_credentials-request.yaml) approach.
 
+*Alternative approach (long-term)*
+
+An upstream effort in this [KEP](https://github.com/kubernetes/enhancements/blob/master/keps/sig-cloud-provider/20191004-out-of-tree-credential-providers.md) attempts to remove `Kubelet` dependency on in-tree credentials issuing process, and instead use a similar approach with pluggable credentials providers. This interface is supposed to be moved into `Alpha` stage with this [PR](https://github.com/kubernetes/kubernetes/pull/94196) in `1.20` release.
+
 ### Upgrade/Downgrade strategy
 
 A set of `cloud-controller-manager` pods will be running under a `Deployment` resource, provisioned by the operator. The leader-election will preserve the leadership during the cluster updates over cloud-specific loops.
